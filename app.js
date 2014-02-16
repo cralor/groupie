@@ -10,7 +10,7 @@ const request = require('request');
 var tokenizer = new natural.WordTokenizer();
 
 var config =  { token:GROUPMETOKEN,
-                name: "giphybot",
+                name: "servant",
                 group: GROUP,
                 url: URL
               };
@@ -29,13 +29,13 @@ bot.on('botRegistered', function() {
 
 bot.on('botMessage', function(bot, message) {
   console.log('incoming');
-  if (message.name != 'giphybot') {
+  if (message.name != 'servant') {
     var tokens = tokenizer.tokenize(message.text);
 
     tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
 
-    if (tokens.indexOf('giphybot') >= 0 || tokens.indexOf('g') >= 0) {
-      tokens = _.without(tokens, 'giphybot', 'g');
+    if (tokens.indexOf('servant') >= 0) {
+      tokens = _.without(tokens, 'servant');
       console.log("searching for " + tokens);
       giphy.search(escape(tokens.join('+')), 20, 0, function(err, data) {
         if (err) console.error(err);
