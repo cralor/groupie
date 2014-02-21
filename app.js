@@ -56,7 +56,9 @@ bot.on('botMessage', function(bot, message) {
           firstDefinition = resultJSON["list"][0]["definition"]
           bot.message(firstDefinition);
         })
-      };
+      } else if ((tokens.indexOf('who') == 1) && (tokens.indexOf('is') == 2)){
+        bot.message("A sexy bastard");
+      }
     }
   }
 });
