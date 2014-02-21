@@ -6,7 +6,6 @@ const natural = require('natural');
 const _ = require('underscore');
 const util = require('util');
 const request = require('request');
-
 var tokenizer = new natural.WordTokenizer();
 
 var config =  { token:GROUPMETOKEN,
@@ -49,6 +48,10 @@ bot.on('botMessage', function(bot, message) {
             bot.message(imageUrl);
           }
         });
+      } else if ((tokens.indexOf('what') == 1) && (tokens.indexOf('is') == 2)) {
+        request('http://api.urbandictionary.com/v0/define?term=doggystyle', function (error, response, body){
+          console.log(body);
+        })
       };
     }
   }
