@@ -46,6 +46,8 @@ bot.on('botMessage', function(bot, message) {
             var imageUrl = "http://media3.giphy.com/media/" + id + "/giphy.gif";
             console.log("sending a message " + imageUrl);
             bot.message(imageUrl);
+          } else {
+            bot.message("Sorry couldn't find anything!")
           }
         });
       } else if ((tokens.indexOf('what') == 1) && (tokens.indexOf('is') == 2)) {
@@ -56,10 +58,6 @@ bot.on('botMessage', function(bot, message) {
           firstDefinition = resultJSON["list"][0]["definition"]
           bot.message(firstDefinition);
         })
-      } else if ((tokens.indexOf('who') == 1) && (tokens.indexOf('is') == 2)){
-        bot.message("A sexy bastard");
-      } else if (tokens.indexOf('cock') > -1) {
-        bot.message("It's so big!!!");
       }
     }
   }
