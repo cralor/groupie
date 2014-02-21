@@ -49,7 +49,9 @@ bot.on('botMessage', function(bot, message) {
           }
         });
       } else if ((tokens.indexOf('what') == 1) && (tokens.indexOf('is') == 2)) {
-        request('http://api.urbandictionary.com/v0/define?term=doggystyle', function(error, response, body){
+        tokens = _.without(tokens, 'groupie', 'g', 'what', 'is');
+        searchTerm = escape(tokens.join('+'))
+        request('http://api.urbandictionary.com/v0/define?term=' + searchTerm, function(error, response, body){
           resultJSON = JSON.parse(body)
           firstDefinition = resultJSON["list"][0]["definition"]
           bot.message(firstDefinition);
