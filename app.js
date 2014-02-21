@@ -49,7 +49,7 @@ bot.on('botMessage', function(bot, message) {
           }
         });
       } else if ((tokens.indexOf('what') == 1) && (tokens.indexOf('is') == 2)) {
-        request('http://api.urbandictionary.com/v0/define?term=doggystyle', function (error, response, body){
+        request('http://api.urbandictionary.com/v0/define?term=doggystyle', function(error, response, body){
           console.log(body);
         })
       };
