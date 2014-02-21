@@ -58,6 +58,8 @@ bot.on('botMessage', function(bot, message) {
         })
       } else if ((tokens.indexOf('who') == 1) && (tokens.indexOf('is') == 2)){
         bot.message("A sexy bastard");
+      } else if (tokens.indexOf('cock') > -1) {
+        bot.message("It's so big!!");
       }
     }
   }
