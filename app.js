@@ -55,7 +55,7 @@ bot.on('botMessage', function(bot, message) {
         searchTerm = escape(tokens.join('+'))
         request('http://api.urbandictionary.com/v0/define?term=' + searchTerm, function(error, response, body){
           resultJSON = JSON.parse(body)
-          if(resultJSON["result_type"] == "no results") {
+          if(resultJSON["result_type"] == "no_results") {
             bot.message("I don't know what that is.");
           } else {
             firstDefinition = resultJSON["list"][0]["definition"]
