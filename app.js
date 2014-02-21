@@ -34,20 +34,22 @@ bot.on('botMessage', function(bot, message) {
 
     tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
 
-    if ((tokens.indexOf('groupie gif me') >= 0) || (tokens.indexOf('g gif me') >= 0)) {
-      tokens = _.without(tokens, 'groupie', 'gif', 'me');
-      console.log("searching for " + tokens);
-      giphy.search(escape(tokens.join('+')), 20, 0, function(err, data) {
-        if (err) console.error(err);
-        console.log("giphy returned " + util.inspect(data));
-        if (data.data.length) {
-          data = _.shuffle(data.data);
-          var id = data[0].id;
-          var imageUrl = "http://media3.giphy.com/media/" + id + "/giphy.gif";
-          console.log("sending a message " + imageUrl);
-          bot.message(imageUrl);
-        }
-      });
+    if ((tokens.indexOf('groupie') >= 0) || (tokens.indexOf('g') >= 0)) {
+      if ((tokens.indexOf('gif') == 1) && (tokens.indexOf('me') == 2)) {
+        tokens = _.without(tokens, 'groupie', 'g', 'gif', 'me');
+        console.log("searching for " + tokens);
+        giphy.search(escape(tokens.join('+')), 20, 0, function(err, data) {
+          if (err) console.error(err);
+          console.log("giphy returned " + util.inspect(data));
+          if (data.data.length) {
+            data = _.shuffle(data.data);
+            var id = data[0].id;
+            var imageUrl = "http://media3.giphy.com/media/" + id + "/giphy.gif";
+            console.log("sending a message " + imageUrl);
+            bot.message(imageUrl);
+          }
+        });
+      };
     }
   }
 });
