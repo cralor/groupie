@@ -62,7 +62,7 @@ bot.on('botMessage', function(bot, message) {
             bot.message(firstDefinition);
           }
         })
-      } else if ((tokens.indexOf('i') == 1) && (tokens.indexOf('love') == 2) && (tokens.indexOf('you')) {
+      } else if ((tokens.indexOf('i') == 1) && (tokens.indexOf('love') == 2) && (tokens.indexOf('you') == 3)) {
         request.post('https://api.groupme.com/v3/messages/' + message.id + '?token=' + GROUPMETOKEN)
       } else {
         bot.message("What?")
