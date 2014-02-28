@@ -9,6 +9,11 @@
 
 /notes
 /docs
-/node_modules
+/node_modules/giphy-wrapper
+/node_modules/groupme
+/node_modules/natural
+/node_modules/pg
+/node_modules/request
+/node_modules/underscore
 /bower_components
 /.idea
