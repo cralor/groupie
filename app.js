@@ -63,7 +63,9 @@ bot.on('botMessage', function(bot, message) {
           }
         })
       } else {
-        bot.message("What?")
+        // bot.message("What?")
+        // request('https://api.groupme.com/v3/?token=' + GROUPMETOKEN)
+        bot.message(message.id)
       }
     }
   }
