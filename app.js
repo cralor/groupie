@@ -63,7 +63,7 @@ bot.on('botMessage', function(bot, message) {
           }
         })
       } else if ((tokens.indexOf('i') == 1) && (tokens.indexOf('love') == 2) && (tokens.indexOf('you') == 3)) {
-        request.post('https://api.groupme.com/v3/messages/' + message.id + '?token=' + GROUPMETOKEN)
+        request.post('https://api.groupme.com/v3/messages/' + GROUP + '/' + message.id + '?token=' + GROUPMETOKEN)
       } else {
         bot.message("What?")
       }
