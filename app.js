@@ -62,10 +62,10 @@ bot.on('botMessage', function(bot, message) {
             bot.message(firstDefinition);
           }
         })
+      } else if ((tokens.indexOf('i') == 1) && (tokens.indexOf('love') == 2) && (tokens.indexOf('you')) {
+        request.post('https://api.groupme.com/v3/messages/' + GROUP + '/' + message.id + '?token=' + GROUPMETOKEN)
       } else {
-        // bot.message("What?")
-        // request('https://api.groupme.com/v3/?token=' + GROUPMETOKEN)
-        bot.message(message.id)
+        bot.message("What?")
       }
     }
   }
