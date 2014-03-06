@@ -6,6 +6,7 @@ const natural = require('natural');
 const _ = require('underscore');
 const util = require('util');
 const request = require('request');
+const google = require('google-images');
 var tokenizer = new natural.WordTokenizer();
 
 var config =  { token:GROUPMETOKEN,
@@ -33,7 +34,7 @@ bot.on('botMessage', function(bot, message) {
 
     tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
 
-    if ((tokens.indexOf('groupie') >= 0) || (tokens.indexOf('g') >= 0)) {
+    if ((tokens.indexOf('groupie') == 0) || (tokens.indexOf('g') == 0)) {
       if ((tokens.indexOf('gif') == 1) && (tokens.indexOf('me') == 2)) {
         tokens = _.without(tokens, 'groupie', 'g', 'gif', 'me');
         console.log("searching for " + tokens);
@@ -61,6 +62,12 @@ bot.on('botMessage', function(bot, message) {
             firstDefinition = resultJSON["list"][0]["definition"]
             bot.message(firstDefinition);
           }
+        })
+      } else if ((tokens.indexOf('image') == 1) && (tokens.indexOf('me') == 2)) {
+        tokens = _.without(tokens, 'groupie', 'g', 'image', 'me');
+        searchTerm = escape(tokens.join('+'))
+        google.search(searchTerm, function(error, images){
+          bot.message(images[0]);
         })
       } else {
         bot.message("What?")
