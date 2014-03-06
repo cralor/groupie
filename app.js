@@ -6,7 +6,7 @@ const natural = require('natural');
 const _ = require('underscore');
 const util = require('util');
 const request = require('request');
-const google = require('google-images');
+const google = require('google-search');
 var tokenizer = new natural.WordTokenizer();
 
 var config =  { token:GROUPMETOKEN,
@@ -22,6 +22,10 @@ if (AVATAR) {
 
 var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
+var googleSearch = new google({
+  key: 'AIzaSyDZwd5PpooxVVyv0u7F8OU7lTM-Yw-0Y-M',
+  cx: '007316038816636919186%3Av8bnmkr4rjs'
+})
 
 bot.on('botRegistered', function() {
   console.log("online");
@@ -66,8 +70,14 @@ bot.on('botMessage', function(bot, message) {
       } else if ((tokens.indexOf('image') == 1) && (tokens.indexOf('me') == 2)) {
         tokens = _.without(tokens, 'groupie', 'g', 'image', 'me');
         searchTerm = escape(tokens.join('+'))
-        google.search(searchTerm, function(error, images){
-          bot.message(images[0]);
+        googleSearch.build({
+          q: searchTerm,
+          start: 1,
+          fileType: 'image',
+          num: 1
+        }, function(error, response) {
+            bot.message(response);
+          }
         })
       } else {
         bot.message("What?")
