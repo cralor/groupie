@@ -68,17 +68,17 @@ bot.on('botMessage', function(bot, message) {
           }
         })
       } else if ((tokens.indexOf('image') == 1) && (tokens.indexOf('me') == 2)) {
-        tokens = _.without(tokens, 'groupie', 'g', 'image', 'me');
-        searchTerm = escape(tokens.join('+'))
-        googleSearch.build({
-          q: searchTerm,
-          start: 1,
-          fileType: 'image',
-          num: 1
-        }, function(error, response) {
-            bot.message(response);
-          }
-        })
+          tokens = _.without(tokens, 'groupie', 'g', 'image', 'me');
+          searchTerm = escape(tokens.join('+'))
+          googleSearch.build(
+            {
+              q: searchTerm,
+              start: 1,
+              fileType: 'image',
+              num: 1
+            }, 
+            function(error, response) { bot.message(response); }
+          )
       } else {
         bot.message("What?")
       }
