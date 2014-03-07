@@ -30,7 +30,7 @@ bot.on('botRegistered', function() {
 
 bot.on('botMessage', function(bot, message) {
   console.log('incoming');
-  if (message.name != 'groupie') {
+  if (message.name != 'groupie' || message.name != 'Marcus') {
     var tokens = tokenizer.tokenize(message.text);
 
     tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
