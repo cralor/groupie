@@ -23,7 +23,7 @@ if (AVATAR) {
 
 var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
-var weather = new wundernode('011c63a4287d7b7d', false, 10, minute);
+var weather = new wundernode('011c63a4287d7b7d', false, 10, 'minute');
 
 
 bot.on('botRegistered', function() {
