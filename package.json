@@ -21,6 +21,7 @@
     "underscore": "~1.5.2",
     "natural": "~0.1.21",
     "request": "~2.33.0",
-    "google-images": "~0.1.0"
+    "google-images": "~0.1.0",
+    "wundernode": "0.4.0"
   }
 }

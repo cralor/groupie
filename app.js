@@ -7,6 +7,7 @@ const _ = require('underscore');
 const util = require('util');
 const request = require('request');
 const image = require('google-images');
+const wundernode = require('wundernode');
 var tokenizer = new natural.WordTokenizer();
 
 var config =  { token:GROUPMETOKEN,
@@ -22,6 +23,7 @@ if (AVATAR) {
 
 var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
+var weather = new wundernode('011c63a4287d7b7d', false, 10, minute);
 
 
 bot.on('botRegistered', function() {
@@ -30,7 +32,7 @@ bot.on('botRegistered', function() {
 
 bot.on('botMessage', function(bot, message) {
   console.log('incoming');
-  if (message.name != 'groupie' || message.name != 'Marcus') {
+  if (message.name != 'groupie' && message.name != 'Marcus') {
     var tokens = tokenizer.tokenize(message.text);
 
     tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
@@ -70,6 +72,12 @@ bot.on('botMessage', function(bot, message) {
           image.search(searchTerm,function(err,images){
             bot.message(images[0].url);
           })
+      } else if ((tokens.indexOf('weather') == 1)) {
+        tokens = _.without(tokens, 'groupie', 'g', 'weather');
+        searchTerm = esccape(tokens.join('+'))
+        weather.forecast(searchTerm, function(err, obj) {
+          bot.message(obj.forecast.txt_forecast.forecastday[0].fcttext);
+        })
       } else {
         bot.message("What?")
       }
