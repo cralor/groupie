@@ -74,7 +74,7 @@ bot.on('botMessage', function(bot, message) {
           })
       } else if ((tokens.indexOf('weather') == 1)) {
         tokens = _.without(tokens, 'groupie', 'g', 'weather');
-        searchTerm = esccape(tokens.join('+'))
+        searchTerm = escape(tokens.join('+'))
         weather.forecast(searchTerm, function(err, obj) {
           bot.message(obj.forecast.txt_forecast.forecastday[0].fcttext);
         })
