@@ -72,12 +72,12 @@ bot.on('botMessage', function(bot, message) {
           image.search(searchTerm,function(err,images){
             bot.message(images[0].url);
           })
-      } else if ((tokens.indexOf('weather') == 1)) {
-        tokens = _.without(tokens, 'groupie', 'g', 'weather');
-        searchTerm = escape(tokens.join('+'))
-        weather.forecast(searchTerm, function(err, obj) {
-          bot.message(obj.forecast.txt_forecast.forecastday[0].fcttext);
-        })
+      } else if (tokens.indexOf('weather') == 1) {
+          tokens = _.without(tokens, 'groupie', 'g', 'weather');
+          searchTerm = escape(tokens.join('+'))
+          weather.forecast(searchTerm, function(err, obj) {
+            bot.message(obj.forecast.txt_forecast.forecastday[0].fcttext);
+          })
       } else {
         bot.message("What?")
       }
