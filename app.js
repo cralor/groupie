@@ -74,10 +74,10 @@ bot.on('botMessage', function(bot, message) {
           })
       } else if ((tokens.indexOf('spotify') == 1) && (tokens.indexOf('me') == 2)) {
           tokens = _.without(tokens, 'groupie', 'g', 'spotify', 'me');
-          searchTerm = escape(tokens.join('+'))
+          searchTerm = escape(tokens.join('+'));
           var results, linkEnd;
           request('http://ws.spotify.com/search/1/track.json?q=' + searchTerm, function(err, resp, body){
-            results = eval("(" + body ')');
+            results = eval("(" + body + ')');
             linkEnd = results["tracks"][0].href.replace('spotify:track:','');
             bot.message("http://open.spotify.com/track/" + linkEnd);
           })
