@@ -16,6 +16,20 @@ var config =  { token:GROUPMETOKEN,
                 url: URL
               };
 
+var phillyUsers = {
+  1605366: "Tien",
+  3187380: "Liem",
+  3595853: "Lam",
+  3630271: "Hoa",
+  3703615: "Marcus",
+  4097166: "Ajmail"
+}
+
+var caliUsers = {
+  91887: "Steve",
+  2088597, "Hong"
+}
+
 const AVATAR = process.env['AVATAR'];
 if (AVATAR) {
   config.avatar_url = AVATAR;
@@ -36,6 +50,13 @@ bot.on('botMessage', function(bot, message) {
     var tokens = tokenizer.tokenize(message.text);
 
     tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
+
+    if ((tokens.indexOf('good') == 0) && (tokens.indexOf('morning')) {
+      request('https://api.groupme.com/v3/groups/1335910/messages?token=' + GROUPMETOKEN, function(err, resp, body){
+        results = eval("(" + body + ')');
+        messagesArr = results.response.messages
+      })
+    })
 
     if ((tokens.indexOf('groupie') == 0) || (tokens.indexOf('g') == 0)) {
       if ((tokens.indexOf('gif') == 1) && (tokens.indexOf('me') == 2)) {
