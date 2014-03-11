@@ -7,7 +7,6 @@ const _ = require('underscore');
 const util = require('util');
 const request = require('request');
 const image = require('google-images');
-const wundernode = require('wundernode');
 var tokenizer = new natural.WordTokenizer();
 
 var config =  { token:GROUPMETOKEN,
@@ -16,20 +15,6 @@ var config =  { token:GROUPMETOKEN,
                 url: URL
               };
 
-var phillyUsers = {
-  1605366: "Tien",
-  3187380: "Liem",
-  3595853: "Lam",
-  3630271: "Hoa",
-  3703615: "Marcus",
-  4097166: "Ajmail"
-}
-
-var caliUsers = {
-  91887: "Steve",
-  2088597, "Hong"
-}
-
 const AVATAR = process.env['AVATAR'];
 if (AVATAR) {
   config.avatar_url = AVATAR;
@@ -37,7 +22,6 @@ if (AVATAR) {
 
 var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
-var weather = new wundernode('011c63a4287d7b7d', false, 10, 'minute');
 
 
 bot.on('botRegistered', function() {
