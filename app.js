@@ -23,7 +23,6 @@ if (AVATAR) {
 var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
 
-
 bot.on('botRegistered', function() {
   console.log("online");
 });
@@ -34,13 +33,6 @@ bot.on('botMessage', function(bot, message) {
     var tokens = tokenizer.tokenize(message.text);
 
     tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
-
-    if ((tokens.indexOf('good') == 0) && (tokens.indexOf('morning')) {
-      request('https://api.groupme.com/v3/groups/1335910/messages?token=' + GROUPMETOKEN, function(err, resp, body){
-        results = eval("(" + body + ')');
-        messagesArr = results.response.messages
-      })
-    })
 
     if ((tokens.indexOf('groupie') == 0) || (tokens.indexOf('g') == 0)) {
       if ((tokens.indexOf('gif') == 1) && (tokens.indexOf('me') == 2)) {
