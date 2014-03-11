@@ -102,6 +102,10 @@ bot.on('botMessage', function(bot, message) {
             linkEnd = results["tracks"][0].href.replace('spotify:track:','');
             bot.message("http://open.spotify.com/track/" + linkEnd);
           })
+      } else if ((tokens.indexOf('lunch') == 1) && (tokens.indexOf('me') == 2)) {
+          var preText = ['Get yourself some', 'Try some', 'Why not some', 'How about', 'Try']
+          var lunchOptions = ['salad', 'pizza', 'sushi', 'liquid lunch', 'cheesesteaks', 'food cart', 'halal', 'korean', 'mexican', 'chinese', 'vietnamese']
+          bot.message(preText[Math.floor(Math.random() * preText.length)] + " " + lunchOptions[Math.floor(Math.random() * lunchOptions.length)] + "!");
       } else {
         bot.message("What?")
       }
