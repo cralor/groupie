@@ -79,6 +79,9 @@ bot.on('botMessage', function(bot, message) {
             }, 
             function(error, response) { bot.message(response); }
           )
+      } else if ((tokens.indexOf('lunch') == 1) && (tokens.indexOf('me') == 2)) {
+        var lunchOptions = ['salad', 'pizza', 'sushi', 'liquid lunch', 'cheesesteaks', 'food cart', 'halal', 'korean', 'mexican', 'chinese', 'vietnamese']
+        bot.message("Get yourself some " + lunchOptions[Math.floor(Math.random() * lunchOptions.length)] + "!");
       } else {
         bot.message("What?")
       }
