@@ -92,7 +92,7 @@ bot.on('botMessage', function(bot, message) {
     			json = eval("(" + body + ')');
     			cals = json.hits[0].fields.nf_calories
     			bot.message("You ate " + cals + " calories.")
-    		}
+    		});
     } else {
       bot.message("What?")
     }
