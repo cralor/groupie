@@ -94,7 +94,7 @@ bot.on('botMessage', function(bot, message) {
     			cals = json.hits[0].fields.nf_calories
     			bot.message("A " + humanSearchTerm + " is " + cals + " calories.")
     		});
-    } else {
+  	} else {
       bot.message("What?")
     }
   }
