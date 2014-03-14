@@ -677,7 +677,7 @@ bot.on('botMessage', function(bot, message) {
         var preText = ['Get yourself some', 'Try some', 'Why not some', 'How about', 'Try']
         var lunchOptions = ['salad', 'pizza', 'sushi', 'liquid lunch', 'cheesesteaks', 'food cart', 'halal', 'korean', 'mexican', 'chinese', 'vietnamese']
         bot.message(preText[Math.floor(Math.random() * preText.length)] + " " + lunchOptions[Math.floor(Math.random() * lunchOptions.length)] + "!");
-    } else if ((tokens.indexOf('tell') == 1) && (tokens.indexOf('me') == 2) && (tokens.indexOf('a')) && (tokens.indexOf('joke'))) {
+    } else if ((tokens.indexOf('tell') == 1) && (tokens.indexOf('me') == 2) && (tokens.indexOf('a') == 3) && (tokens.indexOf('joke') == 4)) {
         bot.message(hedberg[Math.floor(Math.random() * hedberg.length)])
     } else {
       bot.message("What?")
