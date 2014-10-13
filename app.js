@@ -35,9 +35,9 @@ bot.on('botMessage', function(bot, message) {
 
   tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
 
-  if ((tokens.indexOf('Felicia') == 0) || (tokens.indexOf('g') == 0)) {
+  if ((tokens.indexOf('felicia') == 0) || (tokens.indexOf('g') == 0)) {
     if ((tokens.indexOf('gif') == 1) && (tokens.indexOf('me') == 2)) {
-      tokens = _.without(tokens, 'groupie', 'g', 'gif', 'me');
+      tokens = _.without(tokens, 'felicia', 'g', 'gif', 'me');
       console.log("searching for " + tokens);
       giphy.search(escape(tokens.join('+')), 20, 0, function(err, data) {
         if (err) console.error(err);
@@ -53,7 +53,7 @@ bot.on('botMessage', function(bot, message) {
         }
       });
     } else if ((tokens.indexOf('what') == 1) && (tokens.indexOf('is') == 2)) {
-      tokens = _.without(tokens, 'groupie', 'g', 'what', 'is');
+      tokens = _.without(tokens, 'felicia', 'g', 'what', 'is');
       searchTerm = escape(tokens.join('+'))
       request('http://api.urbandictionary.com/v0/define?term=' + searchTerm, function(error, response, body){
         resultJSON = JSON.parse(body)
@@ -65,13 +65,13 @@ bot.on('botMessage', function(bot, message) {
         }
       })
     } else if ((tokens.indexOf('image') == 1) && (tokens.indexOf('me') == 2)) {
-        tokens = _.without(tokens, 'groupie', 'g', 'image', 'me');
+        tokens = _.without(tokens, 'felicia', 'g', 'image', 'me');
         searchTerm = escape(tokens.join('+'))
         image.search(searchTerm,function(err,images){
           bot.message(images[0].url);
         })
     } else if ((tokens.indexOf('spotify') == 1) && (tokens.indexOf('me') == 2)) {
-        tokens = _.without(tokens, 'groupie', 'g', 'spotify', 'me');
+        tokens = _.without(tokens, 'felicia', 'g', 'spotify', 'me');
         searchTerm = escape(tokens.join('+'));
         var results, linkEnd;
         request('http://ws.spotify.com/search/1/track.json?q=' + searchTerm, function(err, resp, body){
