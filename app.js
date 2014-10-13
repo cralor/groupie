@@ -11,7 +11,7 @@ const image = require('google-images');
 var tokenizer = new natural.WordTokenizer();
 
 var config =  { token:GROUPMETOKEN,
-                name: "groupie",
+                name: "Felicia",
                 group: GROUP,
                 url: URL
               };
@@ -35,7 +35,7 @@ bot.on('botMessage', function(bot, message) {
 
   tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
 
-  if ((tokens.indexOf('groupie') == 0) || (tokens.indexOf('g') == 0)) {
+  if ((tokens.indexOf('Felicia') == 0) || (tokens.indexOf('g') == 0)) {
     if ((tokens.indexOf('gif') == 1) && (tokens.indexOf('me') == 2)) {
       tokens = _.without(tokens, 'groupie', 'g', 'gif', 'me');
       console.log("searching for " + tokens);
