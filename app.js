@@ -86,7 +86,7 @@ bot.on('botMessage', function(bot, message) {
     } else if ((tokens.indexOf('tell') == 1) && (tokens.indexOf('me') == 2) && (tokens.indexOf('a') == 3) && (tokens.indexOf('joke') == 4)) {
         bot.message(hedberg[Math.floor(Math.random() * hedberg.length)])
     } else if ((tokens.indexOf('calories') == 1)) {
-    		tokens = _.without(tokens, 'groupie', 'g', 'calories');
+    		tokens = _.without(tokens, 'felicia', 'g', 'calories');
     		humanSearchTerm = tokens.join(' ');
     		searchTerm = escape(tokens.join('+'));
     		request('https://api.nutritionix.com/v1_1/search/' + searchTerm + '?results=0%3A1&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Cnf_calories&appId=5acc25fb&appKey=056e335168bb29dd99fe206141ff84cc', function(err, resp, body){
