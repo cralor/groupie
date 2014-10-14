@@ -35,6 +35,10 @@ bot.on('botMessage', function(bot, message) {
 
   tokens = _.map(tokens, function(t) { return t.toLowerCase(); });
 
+  if ((tokens.indexOf('bye') == 0) || (tokens.indexOf('felicia') == 1)) {
+      bot.message("bye, " + message.name + "!")
+  }
+
   if ((tokens.indexOf('felicia') == 0) || (tokens.indexOf('g') == 0)) {
     if ((tokens.indexOf('gif') == 1) && (tokens.indexOf('me') == 2)) {
       tokens = _.without(tokens, 'felicia', 'g', 'gif', 'me');
@@ -97,7 +101,7 @@ bot.on('botMessage', function(bot, message) {
     } else if (tokens.indexOf('help') == 1) {
         bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is")
   	} else {
-      bot.message("What?")
+      bot.message("Thank you.")
     }
   }
 });
