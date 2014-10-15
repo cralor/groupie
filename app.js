@@ -98,6 +98,8 @@ bot.on('botMessage', function(bot, message) {
     			cals = json.hits[0].fields.nf_calories
     			bot.message("A " + humanSearchTerm + " is " + cals + " calories.")
     		});
+    } else if (tokens.indexOf('weagle') == 1) {
+        bot.message("weagle weagle WAR DAMN EAGLE!!!!");
     } else if (tokens.indexOf('help') == 1) {
         bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is")
   	} else {
