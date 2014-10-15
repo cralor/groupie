@@ -7,7 +7,7 @@ const _ = require('underscore');
 const util = require('util');
 const request = require('request');
 const image = require('google-images');
-const chuck = require('chuck');
+//const chuck = require('chuck');
 
 var tokenizer = new natural.WordTokenizer();
 
@@ -24,7 +24,7 @@ if (AVATAR) {
 
 var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
-var jokes = chuck();
+//var jokes = chuck();
 
 bot.on('botRegistered', function() {
   console.log("online");
@@ -85,9 +85,10 @@ bot.on('botMessage', function(bot, message) {
         var lunchOptions = ['salad', 'pizza', 'sushi', 'liquid lunch', 'cheesesteaks', 'food cart', 'halal', 'korean', 'mexican', 'chinese', 'vietnamese']
         bot.message(preText[Math.floor(Math.random() * preText.length)] + " " + lunchOptions[Math.floor(Math.random() * lunchOptions.length)] + "!");
     } else if ((tokens.indexOf('tell') == 1) && (tokens.indexOf('me') == 2) && (tokens.indexOf('a') == 3) && (tokens.indexOf('joke') == 4)) {
-        jokes.random(function(err, joke) {
+        /*jokes.random(function(err, joke) {
             bot.message(joke);
-        })
+        })*/
+        bot.message("You're silly.");
     } else if ((tokens.indexOf('calories') == 1)) {
     		tokens = _.without(tokens, 'felicia', 'calories');
     		humanSearchTerm = tokens.join(' ');
