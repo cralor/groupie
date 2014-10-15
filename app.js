@@ -7,7 +7,6 @@ const _ = require('underscore');
 const util = require('util');
 const request = require('request');
 const image = require('google-images');
-const jokes = require('chuck');
 
 var tokenizer = new natural.WordTokenizer();
 
@@ -24,6 +23,7 @@ if (AVATAR) {
 
 var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
+var jokes = require('chuck')();
 
 bot.on('botRegistered', function() {
   console.log("online");
