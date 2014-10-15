@@ -7,6 +7,7 @@ const _ = require('underscore');
 const util = require('util');
 const request = require('request');
 const image = require('google-images');
+const chuck = require('coffee-script/register');
 const jokes = require('chuck');
 
 var tokenizer = new natural.WordTokenizer();
