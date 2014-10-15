@@ -100,6 +100,8 @@ bot.on('botMessage', function(bot, message) {
     		});
     } else if (tokens.indexOf('weagle') == 1) {
         bot.message("weagle weagle WAR DAMN EAGLE!!!!");
+    } else if ((tokens.indexOf('do') == 1) && (tokens.indexOf('you') == 2) && (tokens.indexOf('love') == 3) && (tokens.indexOf('me') == 4)) {
+        bot.message("Yes I do, " + message.name + ". You are my " + ((message.name == "InfoKim") ? "creator.":"friend!"));
     } else if (tokens.indexOf('help') == 1) {
         bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is")
   	} else {
