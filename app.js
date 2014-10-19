@@ -119,7 +119,7 @@ bot.on('botMessage', function(bot, message) {
             bot.message("Yes I do, " + message.name + ". You are my " + ((message.name == "InfoKim") ? "creator.":"friend!"));
         } else if (helper.check( "felicia metar me", tokens )) {
             tokens = _.without(tokens, 'felicia', 'metar', 'me');
-            searchTerm = tokens[0];
+            searchTerm = tokens[0].toUpperCase();
 
             request('http://weather.noaa.gov/pub/data/observations/metar/stations/' + searchTerm + '.TXT', function(err, resp, body){
                 console.log(resp.statusCode)
