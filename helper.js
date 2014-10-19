@@ -8,7 +8,7 @@ module.exports = {
     var numTokens = newTokens.length;
 
     for (i = 0; i < numTokens; i++) {
-        if (newTokens.indexOf(i) != tokens.indexOf(i)) {
+        if (newTokens[i] != tokens[i]) {
             return false;
         }
     }
