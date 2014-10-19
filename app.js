@@ -71,7 +71,7 @@ bot.on('botMessage', function(bot, message) {
               firstDefinition = resultJSON["list"][0]["definition"]
 
               if (firstDefinition.length > 450) {
-                  firstDefinition = firstDefinition.substring(0, 446) + " ...";
+                  firstDefinition = firstDefinition.substring(0, 439) + " (cont) ...";
               }
 
               bot.message(firstDefinition);
