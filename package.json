@@ -1,19 +1,19 @@
 {
-  "name": "giphybot",
+  "name": "groupie",
   "version": "0.0.1",
-  "description": "An animated gif bot for Groupme.",
+  "description": "A sophisticated bot for GroupMe.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "github.com:cmcavoy/giphybot.git"
+    "url": "github.com:cralor/groupie.git"
   },
   "author": "Chris McAvoy <chris.mcavoy@gmail.com>",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/cmcavoy/giphybot/issues"
+    "url": "https://github.com/cralor/groupie/issues"
   },
   "dependencies": {
     "fancy-groupme-bot": "0.1.2",
