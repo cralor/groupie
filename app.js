@@ -115,7 +115,7 @@ bot.on('botMessage', function(bot, message) {
         bot.message("weagle weagle WAR DAMN EAGLE!!!!");
     } else if (helper.check( "felicia do you love me", tokens )) {
         bot.message("Yes I do, " + message.name + ". You are my " + ((message.name == "InfoKim") ? "creator.":"friend!"));
-    } else if (helper.check( "felicia help me", tokens ) {
+    } else if (helper.check( "felicia help me", tokens )) {
         bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, music me, image me, what is, help me")
     } else {
       bot.message("Thank you.")
