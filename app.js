@@ -124,6 +124,8 @@ bot.on('botMessage', function(bot, message) {
             request('http://weather.noaa.gov/pub/data/observations/metar/stations/' + searchTerm + '.TXT', function(err, resp, body){
                 if (!err && resp.statusCode == 200) {
                     bot.message( body );
+                } else {
+                    bot.message( "Sorry, that is an invalid airport code." )
                 }
             });
         } else if (helper.check( "felicia help me", tokens )) {
