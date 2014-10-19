@@ -122,9 +122,7 @@ bot.on('botMessage', function(bot, message) {
             searchTerm = tokens[0].toUpperCase();
 
             request('http://weather.noaa.gov/pub/data/observations/metar/stations/' + searchTerm + '.TXT', function(err, resp, body){
-                console.log(resp.statusCode)
-                console.log(body)
-                if (!err && resp.statusCode == 304) { // text content == 304 Not Modified
+                if (!err && resp.statusCode == 200) {
                     bot.message( body );
                 }
             });
