@@ -84,8 +84,8 @@ bot.on('botMessage', function(bot, message) {
             image.search(searchTerm,function(err,images){
               bot.message(images[0].url);
             })
-        } else if (helper.check( "felicia music me", tokens )) {
-            tokens = _.without(tokens, 'felicia', 'music', 'me');
+        } else if (helper.check( "felicia spotify me", tokens )) {
+            tokens = _.without(tokens, 'felicia', 'spotify', 'me');
             searchTerm = escape(tokens.join('+'));
             var results, linkEnd;
 
@@ -117,8 +117,17 @@ bot.on('botMessage', function(bot, message) {
             bot.message("weagle weagle WAR DAMN EAGLE!!!!");
         } else if (helper.check( "felicia do you love me", tokens )) {
             bot.message("Yes I do, " + message.name + ". You are my " + ((message.name == "InfoKim") ? "creator.":"friend!"));
+        } else if (helper.check( "felicia metar me", tokens )) {
+            tokens = _.without(tokens, 'felicia', 'metar', 'me');
+            searchTerm = tokens[0];
+
+            request('http://weather.noaa.gov/pub/data/observations/metar/stations/' + searchTerm + '.TXT', function(err, resp, body){
+                if (!err && resp.statusCode == 200) {
+                    bot.message( body );
+                }
+            });
         } else if (helper.check( "felicia help me", tokens )) {
-            bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, music me, image me, what is, help me")
+            bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is, help me")
         } else {
           bot.message("Thank you.")
         }
