@@ -81,7 +81,7 @@ bot.on('botMessage', function(bot, message) {
             tokens = _.without(tokens, 'felicia', 'image', 'me');
             searchTerm = escape(tokens.join('+'))
 
-            image.search(searchTerm,function(err,images){
+            image.search(searchTerm,function(err,images) {
               bot.message(images[0].url);
             })
         } else if (helper.check( "felicia spotify me", tokens )) {
@@ -128,6 +128,12 @@ bot.on('botMessage', function(bot, message) {
                     bot.message( "Sorry, that is an invalid airport code." )
                 }
             });
+        } else if (helper.check( "felicia who is the mayor of titty city", tokens )) {
+            if ( message.name == "KIM of Support" ) {
+                bot.message("YOU are the mayor!!!");
+            } else {
+                bot.message("You are not the mayor...");
+            }
         } else if (helper.check( "felicia help me", tokens )) {
             bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is, help me")
         } else {
