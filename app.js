@@ -136,6 +136,9 @@ bot.on('botMessage', function(bot, message) {
             }
         } else if (helper.check( "felicia help me", tokens )) {
             bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is, help me")
+        } else if (helper.check( "felicia say", tokens )) {
+            tokens = _.without(tokens, 'felicia', 'say');
+            bot.message(tokens.join(" "));
         } else {
           bot.message("Thank you.")
         }
