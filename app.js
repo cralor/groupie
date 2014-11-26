@@ -137,7 +137,7 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia help me", tokens )) {
             bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is, help me")
         } else if (helper.check( "felicia say", tokens )) {
-            msg = message.text.split();
+            msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'say');
             bot.message(msg.join(" "));
         } else {
