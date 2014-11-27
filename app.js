@@ -212,7 +212,7 @@ bot.on('botMessage', function(bot, message) {
                                 for (i = 0; i < data.alerts.length; i++) {
                                     elem = data.alerts[i];
                                     response += "\nWeather Alert: " + elem.title;
-                                    response += "\n(More info: " elem.uri + ")";
+                                    response += "\n(More info: " + elem.uri + ")";
                                 }
                             }
 
