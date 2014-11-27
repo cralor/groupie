@@ -161,8 +161,6 @@ bot.on('botMessage', function(bot, message) {
                         if (fioErr) {
                             bot.message("Forecast not found?");
                         } else {
-                            response = JSON.stringify(data,null, 2);
-                            console.log(response);
 
                             current_weather = data.currently.summary;
                             precip_type = "no precipitation";
@@ -185,8 +183,8 @@ bot.on('botMessage', function(bot, message) {
 
 
                             response = current_weather + " in \"" + searchLoc + "\"";
-                            response += " and " + current_temp + "F .\n";
-                            response += "Wind: " + wind_speed + "@";
+                            response += " Temp: " + current_temp + "F.\n";
+                            response += "Wind: " + wind_speed + "mph @ ";
                             response += wind_bearing + ". Visibility: ";
                             response += current_vis + " miles.\n";
 
@@ -213,8 +211,13 @@ bot.on('botMessage', function(bot, message) {
                             if (data.alerts != null) {
                                 for (i = 0; i < data.alerts.length; i++) {
                                     elem = data.alerts[i];
-                                    response += "\nAlert: " + elem.title;
+                                    response += "\nWeather Alert: " + elem.title;
+                                    response += "\n(More info: " elem.uri + ")";
                                 }
+                            }
+
+                            if (response.length > 450) {
+                                response = response.substring(0, 439) + " (cont) ...";
                             }
 
                             bot.message(response);
