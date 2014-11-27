@@ -145,11 +145,12 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia weather me", tokens )) {
             tokens = _.without(tokens, 'felicia', 'weather', 'me');
             searchLoc = tokens.join(" ");
+            console.log("loc: " + searchLoc);
 
             google_geocoding.geocode(searchLoc, function(geoErr, location) {
                 if ( geoErr ) {
                     bot.message("Well, that was an error...")
-                } else if( !location ) {
+                } else if ( !location ) {
                     bot.message("I couldn't find that, sorry!")
                 } else {
                     fio.forecast(location.lat, location.lng, function(fioErr, data) {
