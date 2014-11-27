@@ -154,7 +154,7 @@ bot.on('botMessage', function(bot, message) {
                     bot.message("I couldn't find that, sorry!")
                 } else {
                     var options = {
-                        exclude: 'latitude,longitude,timezone,offset,flags'
+                        exclude: 'latitude,longitude,timezone,offset,minutely,hourly,flags'
                     };
 
                     fio.forecast(location.lat, location.lng, options, function(fioErr, data) {
@@ -163,6 +163,34 @@ bot.on('botMessage', function(bot, message) {
                         } else {
                             response = JSON.stringify(data,null, 2);
                             console.log(response);
+
+                            current_weather = data.currently.summary;
+                            precip_type = "None";
+                            current_temp = data.currently.apparentTemperature;
+                            wind_speed = data.currently.windSpeed;
+                            wind_bearing = data.currently.windBearing;
+                            clouds = data.currently.cloudCover;
+                            current_vis = data.currently.visibility;
+                            accumulation = "None";
+
+                            // Precipitation types
+                            if (data.currently.precipIntensity > 0) {
+                                precip_type = data.currently.precipType;
+                            }
+
+                            // Accumulation of snow
+                            if (data.daily.precipIntensity > 0) {
+                                accumulation = data.daily.precipAccumulation;
+                            }
+
+                            // Alerts
+                            for (int i = 0; i < data.alerts.length; i++) {
+                                // TODO
+                            }
+
+                            response = current_weather;
+
+                            bot.message(response);
                         }
                     });
                 }
