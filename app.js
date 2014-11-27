@@ -184,29 +184,30 @@ bot.on('botMessage', function(bot, message) {
                             }
 
 
-                            response = "\"" + current_weather + "\"";
-                            response += " in \"" + searchLoc + "\"";
-                            response += " and " + current_temp + " degrees.\n";
-                            response += "The wind is currently " + wind_speed;
-                            response += "mph bearing " + wind_bearing + "\n";
+                            response = current_weather + " in \"" + searchLoc + "\"";
+                            response += " and " + current_temp + "F .\n";
+                            response += "Wind: " + wind_speed + "@";
+                            response += wind_bearing + ". Visibility: ";
+                            response += current_vis + " miles.\n";
 
                             if (clouds >= 1) {
-                                clouds = "Overcast";
+                                clouds = "overcast";
                             } else if (clouds >= 0.75) {
-                                clouds = "Broken";
+                                clouds = "broken";
                             } else if (clouds >= 0.4) {
-                                clouds = "Scattered";
+                                clouds = "scattered";
                             } else if (clouds >= 0) {
-                                clouds = "Clear";
+                                clouds = "clear";
                             } else {
-                                clouds = "Butt";
+                                clouds = "butt";
                             }
 
-                            response += "The clouds are currently " + clouds;
+                            response += "Clouds are currently " + clouds;
                             response += " with " + precip_type + ". ";
-                            response += accumulation + "in accumulation.\n";
-                            response += "Visibility is currently " + current_vis;
-                            response += "miles.";
+
+                            if (!precip_type == "no precipitation") {}
+                                response += accumulation + " inches expected.\n";
+                            }
 
                             // Alerts
                             if (data.alerts != null) {
