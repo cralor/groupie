@@ -157,8 +157,11 @@ bot.on('botMessage', function(bot, message) {
                         if (fioErr) {
                             bot.message("Forecast not found?");
                         } else {
-                            bot.message(JSON.stringify(data, null, 2));
-                            console.log("forecast FOUND!");
+                            response = JSON.stringify(data,null, 2));
+                            if (response.length > 450) {
+                                response = response.substring(0, 439) + " (cont) ...";
+                            }
+                            bot.message(response);
                         }
                     });
                 }
