@@ -8,6 +8,7 @@ const util = require('util');
 const request = require('request');
 const image = require('google-images');
 const helper = require('./helper.js');
+const forecastio = require('forecastio')
 
 //const chuck = require('chuck');
 
@@ -26,7 +27,8 @@ if (AVATAR) {
 
 var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
-//var jokes = chuck();
+var google_geocoding = require('google-geocoding');
+var fio = new forecastio(process.env['FORECASTIO']);
 
 bot.on('botRegistered', function() {
   console.log("online");
@@ -140,6 +142,25 @@ bot.on('botMessage', function(bot, message) {
             msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'say');
             bot.message(msg.join(" "));
+        } else if (helper.check( "felicia weather me", tokens )) {
+            tokens = _.without(tokens, 'felicia', 'weather', 'me');
+            searchLoc = tokens.join(" ");
+
+            google_geocoding.geocode(searchLoc, function(geoErr, location) {
+                if ( geoErr ) {
+                    bot.message("Well, that was an error...")
+                } else if( !location ) {
+                    bot.message("I couldn't find that, sorry!")
+                } else {
+                    fio.forecast(location.lat, location.lng, function(fioErr, data) {
+                        if (fioErr) {
+                            bot.message("Forecast not found?");
+                        } else {
+                            bot.message(JSON.stringify(data, null, 2));
+                        }
+                    });
+                }
+            });
         } else {
           bot.message("Thank you.")
         }
