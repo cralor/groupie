@@ -184,7 +184,7 @@ bot.on('botMessage', function(bot, message) {
                             }
 
                             // Alerts
-                            for (int i = 0; i < data.alerts.length; i++) {
+                            for (i = 0; i < data.alerts.length; i++) {
                                 // TODO
                             }
 
