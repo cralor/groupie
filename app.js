@@ -205,7 +205,7 @@ bot.on('botMessage', function(bot, message) {
                             response += "Clouds are currently " + clouds;
                             response += " with " + precip_type + ". ";
 
-                            if (!precip_type == "no precipitation") {}
+                            if (!precip_type == "no precipitation") {
                                 response += accumulation + " inches expected.\n";
                             }
 
