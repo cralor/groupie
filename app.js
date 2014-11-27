@@ -153,7 +153,11 @@ bot.on('botMessage', function(bot, message) {
                 } else if ( !location ) {
                     bot.message("I couldn't find that, sorry!")
                 } else {
-                    fio.forecast(location.lat, location.lng, function(fioErr, data) {
+                    var options = {
+                        exclude: 'latitude,longitude,timezone,offset,flags'
+                    };
+
+                    fio.forecast(location.lat, location.lng, options, function(fioErr, data) {
                         if (fioErr) {
                             bot.message("Forecast not found?");
                         } else {
