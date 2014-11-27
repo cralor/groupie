@@ -165,13 +165,13 @@ bot.on('botMessage', function(bot, message) {
                             console.log(response);
 
                             current_weather = data.currently.summary;
-                            precip_type = "None";
+                            precip_type = "no precipitation";
                             current_temp = data.currently.apparentTemperature;
                             wind_speed = data.currently.windSpeed;
                             wind_bearing = data.currently.windBearing;
                             clouds = data.currently.cloudCover;
                             current_vis = data.currently.visibility;
-                            accumulation = "None";
+                            accumulation = "0";
 
                             // Precipitation types
                             if (data.currently.precipIntensity > 0) {
@@ -183,14 +183,38 @@ bot.on('botMessage', function(bot, message) {
                                 accumulation = data.daily.precipAccumulation;
                             }
 
+
+                            response = "\"" + current_weather + "\"";
+                            response += " in \"" + searchLoc + "\"";
+                            response += " and " + current_temp + " degrees.\n";
+                            response += "The wind is currently " + wind_speed;
+                            response += "mph bearing " + wind_bearing + "\n";
+
+                            if (clouds >= 1) {
+                                clouds = "Overcast";
+                            } else if (clouds >= 0.75) {
+                                clouds = "Broken";
+                            } else if (clouds >= 0.4) {
+                                clouds = "Scattered";
+                            } else if (clouds >= 0) {
+                                clouds = "Clear";
+                            } else {
+                                clouds = "Butt";
+                            }
+
+                            response += "The clouds are currently " + clouds;
+                            response += " with " + precip_type + ". ";
+                            response += accumulation + "in accumulation.\n";
+                            response += "Visibility is currently " + current_vis;
+                            response += "miles.";
+
                             // Alerts
                             if (data.alerts != null) {
                                 for (i = 0; i < data.alerts.length; i++) {
-                                    // TODO
+                                    elem = data.alerts[i];
+                                    response += "\nAlert: " + elem.title;
                                 }
                             }
-
-                            response = current_weather;
 
                             bot.message(response);
                         }
