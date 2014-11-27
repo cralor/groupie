@@ -158,10 +158,7 @@ bot.on('botMessage', function(bot, message) {
                             bot.message("Forecast not found?");
                         } else {
                             response = JSON.stringify(data,null, 2);
-                            if (response.length > 450) {
-                                response = response.substring(0, 439) + " (cont) ...";
-                            }
-                            bot.message(response);
+                            console.log(response);
                         }
                     });
                 }
