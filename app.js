@@ -158,6 +158,7 @@ bot.on('botMessage', function(bot, message) {
                             bot.message("Forecast not found?");
                         } else {
                             bot.message(JSON.stringify(data, null, 2));
+                            console.log("forecast FOUND!");
                         }
                     });
                 }
