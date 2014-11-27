@@ -184,8 +184,10 @@ bot.on('botMessage', function(bot, message) {
                             }
 
                             // Alerts
-                            for (i = 0; i < data.alerts.length; i++) {
-                                // TODO
+                            if (data.alerts != null) {
+                                for (i = 0; i < data.alerts.length; i++) {
+                                    // TODO
+                                }
                             }
 
                             response = current_weather;
