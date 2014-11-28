@@ -223,17 +223,23 @@ bot.on('botMessage', function(bot, message) {
                                     shorten_me.shorten(elem.uri, function(err, url) {
                                         shortenedURL = url;
                                         console.log(url);
+                                        
+                                        response += "\n[More: " + shortenedURL + "]";
+
+                                        if (response.length > 450) {
+                                            response = response.substring(0, 439) + " (cont) ...";
+                                        }
+
+                                        bot.message(response);
                                     });
-
-                                    response += "\n[More: " + shortenedURL + "]";
                                 }
-                            }
+                            } else {
+                                if (response.length > 450) {
+                                    response = response.substring(0, 439) + " (cont) ...";
+                                }
 
-                            if (response.length > 450) {
-                                response = response.substring(0, 439) + " (cont) ...";
+                                bot.message(response);
                             }
-
-                            bot.message(response);
                         }
                     });
                 }
