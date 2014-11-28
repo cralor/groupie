@@ -147,7 +147,7 @@ bot.on('botMessage', function(bot, message) {
             tokens = _.without(tokens, 'felicia', 'shorten', 'me');
             var givenURL = tokens[0];
 
-            url.shorten(givenURL, function(err, url) {
+            shorten_me.shorten(givenURL, function(err, url) {
                 bot.message(url);
             });
         } else if (helper.check( "felicia weather me", tokens )) {
