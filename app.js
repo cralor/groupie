@@ -219,6 +219,8 @@ bot.on('botMessage', function(bot, message) {
 
                             // Alerts
                             if (data.alerts != null) {
+                                var counter = 0;
+
                                 for (i = 0; i < data.alerts.length; i++) {
                                     var elem = data.alerts[i];
                                     response += "\nWeather Alert: " + elem.title;
@@ -229,13 +231,17 @@ bot.on('botMessage', function(bot, message) {
                                         shortenedURL = url;
                                         console.log(url);
 
+                                        counter++;
+
                                         response += "\n[ More: " + shortenedURL + " ]";
 
-                                        if (response.length > 450) {
-                                            response = response.substring(0, 439) + " (cont) ...";
-                                        }
+                                        if (counter == data.alerts.length) {
+                                            if (response.length > 450) {
+                                                response = response.substring(0, 439) + " (cont) ...";
+                                            }
 
-                                        bot.message(response);
+                                            bot.message(response);
+                                        }
                                     });
                                 }
                             } else {
