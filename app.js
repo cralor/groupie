@@ -29,6 +29,7 @@ var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
 var google_geocoding = require('google-geocoding');
 var fio = new forecastio(process.env['FORECASTIO']);
+var url = require('short-url');
 
 bot.on('botRegistered', function() {
   console.log("online");
@@ -142,6 +143,13 @@ bot.on('botMessage', function(bot, message) {
             msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'say');
             bot.message(msg.join(" "));
+        } else if (helper.check( "felicia shorten me", tokens )) {
+            tokens = _.without(tokens, 'felicia', 'shorten', 'me');
+            givenURL = tokens[0];
+
+            url.shorten(givenURL, function(err, url) {
+                bot.message(url);
+            });
         } else if (helper.check( "felicia weather me", tokens )) {
             tokens = _.without(tokens, 'felicia', 'weather', 'me');
             searchLoc = tokens.join(" ");
@@ -212,7 +220,10 @@ bot.on('botMessage', function(bot, message) {
                                 for (i = 0; i < data.alerts.length; i++) {
                                     elem = data.alerts[i];
                                     response += "\nWeather Alert: " + elem.title;
-                                    response += "\n(More info: " + elem.uri + ")";
+
+                                    url.shorten(elem.uri, function(err, url) {
+                                        response += "\n(More: " + url + ")";
+                                    });
                                 }
                             }
 
