@@ -143,7 +143,7 @@ bot.on('botMessage', function(bot, message) {
             var msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'say');
             bot.message(msg.join(" "));
-        } else if (helper.check( "felicia shorten me", tokens )) {
+        } else if (helper.check( "felicia short url", tokens )) {
             tokens = _.without(tokens, 'felicia', 'shorten', 'me');
             var givenURL = tokens[0];
 
@@ -204,7 +204,7 @@ bot.on('botMessage', function(bot, message) {
                             response += "Clouds are currently " + clouds;
                             response += " with " + precip_type + ". ";
 
-                            if (precip_type === "snow") {
+                            if (data.daily.precipType === "snow") {
                                 var accumulation = data.daily.precipAccumulation;
 
                                 if (!accumulation === "undefined") {
