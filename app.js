@@ -144,7 +144,7 @@ bot.on('botMessage', function(bot, message) {
             msg = _.without(msg, 'felicia', 'say');
             bot.message(msg.join(" "));
         } else if (helper.check( "felicia short url", tokens )) {
-            tokens = _.without(tokens, 'felicia', 'shorten', 'me');
+            tokens = _.without(tokens, 'felicia', 'short', 'url');
             var givenURL = tokens[0];
 
             shorten_me.shorten(givenURL, function(err, url) {
