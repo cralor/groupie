@@ -183,8 +183,8 @@ bot.on('botMessage', function(bot, message) {
                                 precip_type = data.currently.precipType;
                             }
 
-                            var response = current_weather;
-                            response += " Temp: " + current_temp + "F.\n";
+                            var response = "Now: " + current_weather;
+                            response += ", Temp: " + current_temp + "F.\n";
                             response += "Wind: " + wind_speed + "mph @ ";
                             response += wind_bearing + ". Visibility: ";
                             response += current_vis + " miles.\n";
@@ -223,8 +223,8 @@ bot.on('botMessage', function(bot, message) {
                                     shorten_me.shorten(elem.uri, function(err, url) {
                                         shortenedURL = url;
                                         console.log(url);
-                                        
-                                        response += "\n[More: " + shortenedURL + "]";
+
+                                        response += "\n[ More: " + shortenedURL + " ]";
 
                                         if (response.length > 450) {
                                             response = response.substring(0, 439) + " (cont) ...";
