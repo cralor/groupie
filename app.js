@@ -108,8 +108,8 @@ bot.on('botMessage', function(bot, message) {
             bot.message("You're silly.");
         } else if (helper.check( "felicia calories", tokens )) {
     		tokens = _.without(tokens, 'felicia', 'calories');
-    		humanSearchTerm = tokens.join(' ');
-    		searchTerm = escape(tokens.join('+'));
+    		var humanSearchTerm = tokens.join(' ');
+    		var searchTerm = escape(tokens.join('+'));
 
     		request('https://api.nutritionix.com/v1_1/search/' + searchTerm + '?results=0%3A1&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Cnf_calories&appId=5acc25fb&appKey=056e335168bb29dd99fe206141ff84cc', function(err, resp, body){
     			json = eval("(" + body + ')');
@@ -122,7 +122,7 @@ bot.on('botMessage', function(bot, message) {
             bot.message("Yes I do, " + message.name + ". You are my " + ((message.name == "InfoKim") ? "creator.":"friend!"));
         } else if (helper.check( "felicia metar me", tokens )) {
             tokens = _.without(tokens, 'felicia', 'metar', 'me');
-            searchTerm = tokens[0].toUpperCase();
+            var searchTerm = tokens[0].toUpperCase();
 
             request('http://weather.noaa.gov/pub/data/observations/metar/stations/' + searchTerm + '.TXT', function(err, resp, body){
                 if (!err && resp.statusCode == 200) {
@@ -140,19 +140,19 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia help me", tokens )) {
             bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is, help me")
         } else if (helper.check( "felicia say", tokens )) {
-            msg = message.text.split(" ");
+            var msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'say');
             bot.message(msg.join(" "));
         } else if (helper.check( "felicia shorten me", tokens )) {
             tokens = _.without(tokens, 'felicia', 'shorten', 'me');
-            givenURL = tokens[0];
+            var givenURL = tokens[0];
 
             url.shorten(givenURL, function(err, url) {
                 bot.message(url);
             });
         } else if (helper.check( "felicia weather me", tokens )) {
             tokens = _.without(tokens, 'felicia', 'weather', 'me');
-            searchLoc = tokens.join(" ");
+            var searchLoc = tokens.join(" ");
             console.log("loc: " + searchLoc);
 
             google_geocoding.geocode(searchLoc, function(geoErr, location) {
@@ -170,21 +170,20 @@ bot.on('botMessage', function(bot, message) {
                             bot.message("Forecast not found?");
                         } else {
 
-                            current_weather = data.currently.summary;
-                            precip_type = "no precipitation";
-                            current_temp = data.currently.apparentTemperature;
-                            wind_speed = data.currently.windSpeed;
-                            wind_bearing = data.currently.windBearing;
-                            clouds = data.currently.cloudCover;
-                            current_vis = data.currently.visibility;
-                            accumulation = "0";
+                            var current_weather = data.currently.summary;
+                            var precip_type = "no precipitation";
+                            var current_temp = data.currently.apparentTemperature;
+                            var wind_speed = data.currently.windSpeed;
+                            var wind_bearing = data.currently.windBearing;
+                            var clouds = data.currently.cloudCover;
+                            var current_vis = data.currently.visibility;
 
                             // Precipitation types
                             if (data.currently.precipIntensity > 0) {
                                 precip_type = data.currently.precipType;
                             }
 
-                            response = current_weather + " in \"" + searchLoc + "\"";
+                            var response = current_weather;
                             response += " Temp: " + current_temp + "F.\n";
                             response += "Wind: " + wind_speed + "mph @ ";
                             response += wind_bearing + ". Visibility: ";
@@ -206,17 +205,20 @@ bot.on('botMessage', function(bot, message) {
                             response += " with " + precip_type + ". ";
 
                             if (precip_type === "snow") {
-                                accumulation = data.daily.precipAccumulation;
-                                response += accumulation + " inches expected.";
+                                var accumulation = data.daily.precipAccumulation;
+
+                                if (!accumulation === "undefined") {
+                                    response += accumulation + " inches expected.";
+                                }
                             }
 
                             // Alerts
                             if (data.alerts != null) {
                                 for (i = 0; i < data.alerts.length; i++) {
-                                    elem = data.alerts[i];
+                                    var elem = data.alerts[i];
                                     response += "\nWeather Alert: " + elem.title;
 
-                                    shortenedURL = null;
+                                    var shortenedURL = null;
 
                                     shorten_me.shorten(elem.uri, function(err, url) {
                                         shortenedURL = url;
