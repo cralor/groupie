@@ -184,12 +184,6 @@ bot.on('botMessage', function(bot, message) {
                                 precip_type = data.currently.precipType;
                             }
 
-                            // Accumulation of snow
-                            if (data.daily.precipIntensity > 0) {
-                                accumulation = data.daily.precipAccumulation;
-                            }
-
-
                             response = current_weather + " in \"" + searchLoc + "\"";
                             response += " Temp: " + current_temp + "F.\n";
                             response += "Wind: " + wind_speed + "mph @ ";
@@ -212,8 +206,8 @@ bot.on('botMessage', function(bot, message) {
                             response += " with " + precip_type + ". ";
 
                             if (precip_type === "snow") {
-                                console.log("accumulation running");
-                                response += accumulation + " inches expected.\n";
+                                accumulation = data.daily.precipAccumulation;
+                                response += accumulation + " inches expected.";
                             }
 
                             // Alerts
@@ -222,12 +216,14 @@ bot.on('botMessage', function(bot, message) {
                                     elem = data.alerts[i];
                                     response += "\nWeather Alert: " + elem.title;
 
+                                    shortenedURL = null;
+
                                     shorten_me.shorten(elem.uri, function(err, url) {
-                                        response += "\n[More: ";
-                                        response += url;
-                                        response += "]";
+                                        shortenedURL = url;
                                         console.log(url);
                                     });
+
+                                    response += "\n[More: " + url + "]";
                                 }
                             }
 
