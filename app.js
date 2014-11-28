@@ -223,7 +223,7 @@ bot.on('botMessage', function(bot, message) {
                                         console.log(url);
                                     });
 
-                                    response += "\n[More: " + url + "]";
+                                    response += "\n[More: " + shortenedURL + "]";
                                 }
                             }
 
