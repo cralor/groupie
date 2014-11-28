@@ -211,7 +211,8 @@ bot.on('botMessage', function(bot, message) {
                             response += "Clouds are currently " + clouds;
                             response += " with " + precip_type + ". ";
 
-                            if (!precip_type === "no precipitation") {
+                            if (precip_type === "snow") {
+                                console.log("accumulation running");
                                 response += accumulation + " inches expected.\n";
                             }
 
@@ -222,7 +223,9 @@ bot.on('botMessage', function(bot, message) {
                                     response += "\nWeather Alert: " + elem.title;
 
                                     shorten_me.shorten(elem.uri, function(err, url) {
-                                        response += "\n(More: " + url + ")";
+                                        response += "\n[More: ";
+                                        response += url;
+                                        response += "]";
                                         console.log(url);
                                     });
                                 }
