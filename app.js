@@ -138,7 +138,11 @@ bot.on('botMessage', function(bot, message) {
                 bot.message("You are not the mayor...");
             }
         } else if (helper.check( "felicia help me", tokens )) {
-            bot.message("Here ya go: gif me, lunch me, tell me a joke, calories, spotify me, image me, what is, help me")
+            var commands = "gif me, lunch me, tell me a joke, calories,";
+            commands += "spotify me, image me, what is, help me, say, weagle,";
+            commands += "metar me, short url, weather me";
+
+            bot.message("Here ya go:\n" + commands);
         } else if (helper.check( "felicia say", tokens )) {
             var msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'say');
