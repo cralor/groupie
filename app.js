@@ -29,7 +29,7 @@ var giphy = require('giphy-wrapper')(GIPHYTOKEN);
 var bot = require('fancy-groupme-bot')(config);
 var google_geocoding = require('google-geocoding');
 var fio = new forecastio(process.env['FORECASTIO']);
-var shorten-me = require('short-url');
+var shorten_me = require('short-url');
 
 bot.on('botRegistered', function() {
   console.log("online");
@@ -221,7 +221,7 @@ bot.on('botMessage', function(bot, message) {
                                     elem = data.alerts[i];
                                     response += "\nWeather Alert: " + elem.title;
 
-                                    shorten-me.shorten(elem.uri, function(err, url) {
+                                    shorten_me.shorten(elem.uri, function(err, url) {
                                         response += "\n(More: " + url + ")";
                                         console.log(url);
                                     });
