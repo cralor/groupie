@@ -105,7 +105,7 @@ bot.on('botMessage', function(bot, message) {
             /*jokes.random(function(err, joke) {
                 bot.message(joke);
             })*/
-            bot.message("You're silly.");
+            bot.message("You.");
         } else if (helper.check( "felicia calories", tokens )) {
     		tokens = _.without(tokens, 'felicia', 'calories');
     		var humanSearchTerm = tokens.join(' ');
@@ -155,6 +155,29 @@ bot.on('botMessage', function(bot, message) {
             shorten_me.shorten(givenURL, function(err, url) {
                 bot.message(url);
             });
+        } else if (helper.check( "felicia insult", tokens )) {
+            tokens = _.without(tokens, 'felicia', 'insult');
+
+            var targetName = tokens[0];
+
+            var groupOne = ['lazy', 'stupid', 'insecure', 'idiotic', 'slimy',
+                'slutty', 'smelly', 'pompous', 'communist', 'dicknose', 'pie-eating',
+                'racist', 'elitist', 'white trash', 'drug-loving', 'butterface',
+                'tone deaf', 'ugly', 'creepy'];
+            var groupTwo = ['douche', 'ass', 'turd', 'rectum', 'butt', 'cock',
+                'shit', 'crotch', 'bitch', 'turd', 'prick', 'slut', 'taint',
+                'fuck', 'dick', 'boner', 'shart', 'nut', 'sphincter'];
+            var groupThree = ['pilot', 'canoe', 'captain', 'pirate',
+                'hammer', 'knob', 'box', 'jockey', 'nazi', 'waffle',
+                'goblin', 'blossum', 'biscuit', 'clown', 'socket', 'monster',
+                'hound', 'dragon', 'balloon'];
+
+            var one = groupOne[Math.floor(Math.random() * groupOne.length)];
+            var two = groupTwo[Math.floor(Math.random() * groupTwo.length)];
+            var three = groupThree[Math.floor(Math.random() * groupThree.length)];
+
+            bot.message(targetName + " is a " + one + two + three + "!");
+
         } else if (helper.check( "felicia weather me", tokens )) {
             tokens = _.without(tokens, 'felicia', 'weather', 'me');
             var searchLoc = tokens.join(" ");
@@ -221,7 +244,7 @@ bot.on('botMessage', function(bot, message) {
                             if (data.alerts != null) {
                                 var counter = 0;
 
-                                for (i = 0; i < data.alerts.length; i++) {
+                                for (var i = 0; i < data.alerts.length; i++) {
                                     var elem = data.alerts[i];
                                     response += "\nWeather Alert: " + elem.title;
 
@@ -256,7 +279,7 @@ bot.on('botMessage', function(bot, message) {
                 }
             });
         } else {
-          bot.message("Thank you.")
+           // Do nothing.
         }
     }
 });
