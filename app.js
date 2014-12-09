@@ -158,7 +158,7 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia insult", tokens )) {
             tokens = _.without(tokens, 'felicia', 'insult');
 
-            var targetName = tokens[0];
+            var targetName = tokens[0].charAt(0).toUpperCase() + tokens[0].slice(1);
 
             var groupOne = ['lazy', 'stupid', 'insecure', 'idiotic', 'slimy',
                 'slutty', 'smelly', 'pompous', 'communist', 'dicknose', 'pie-eating',
@@ -176,7 +176,7 @@ bot.on('botMessage', function(bot, message) {
             var two = groupTwo[Math.floor(Math.random() * groupTwo.length)];
             var three = groupThree[Math.floor(Math.random() * groupThree.length)];
 
-            bot.message(targetName + " is a " + one + two + three + "!");
+            bot.message(targetName + " is a " + one + " " + two + " " + three + "!");
 
         } else if (helper.check( "felicia weather me", tokens )) {
             tokens = _.without(tokens, 'felicia', 'weather', 'me');
