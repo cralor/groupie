@@ -158,7 +158,7 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia insult", tokens )) {
             tokens = _.without(tokens, 'felicia', 'insult');
 
-            var targetName = _.capitalize(tokens[0]);
+            var targetName = _.str.capitalize(tokens[0]);
 
             var groupOne = ['lazy', 'stupid', 'insecure', 'idiotic', 'slimy',
                 'slutty', 'smelly', 'pompous', 'communist', 'dicknose', 'pie-eating',
