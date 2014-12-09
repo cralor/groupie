@@ -140,13 +140,14 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia help me", tokens )) {
             var commands = "gif me, lunch me, tell me a joke, calories,";
             commands += "spotify me, image me, what is, help me, say, weagle,";
-            commands += "metar me, short url, weather me";
+            commands += "metar me, short url, weather me, insult";
 
             bot.message("Here ya go:\n" + commands);
         } else if (helper.check( "felicia say", tokens )) {
             var msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'say');
-            bot.message(msg.join(" "));
+            console.log(msg);
+            //bot.message(msg.join(" "));
         } else if (helper.check( "felicia short url", tokens )) {
             var msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'short', 'url');
@@ -158,7 +159,7 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia insult", tokens )) {
             tokens = _.without(tokens, 'felicia', 'insult');
 
-            var targetName = tokens[0].charAt(0).toUpperCase() + tokens[0].slice(1);
+            var targetName = _.capitalize(tokens[0]);
 
             var groupOne = ['lazy', 'stupid', 'insecure', 'idiotic', 'slimy',
                 'slutty', 'smelly', 'pompous', 'communist', 'dicknose', 'pie-eating',
