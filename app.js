@@ -146,8 +146,8 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia say", tokens )) {
             var msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'say');
-            console.log(msg);
-            //bot.message(msg.join(" "));
+            console.log(msg.join(" "));
+            bot.message(msg.join(" "));
         } else if (helper.check( "felicia short url", tokens )) {
             var msg = message.text.split(" ");
             msg = _.without(msg, 'felicia', 'short', 'url');
