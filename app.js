@@ -143,7 +143,7 @@ bot.on('botMessage', function(bot, message) {
         } else if (helper.check( "felicia help me", tokens )) {
             var commands = "gif me, lunch me, tell me a joke, calories,";
             commands += "spotify me, image me, what is, help me, say, weagle,";
-            commands += "metar me, short url, weather me, insult";
+            commands += "metar me, short url, weather me, insult, google";
 
             bot.message("Here ya go:\n" + commands);
         } else if (helper.check( "felicia say", tokens )) {
@@ -165,7 +165,7 @@ bot.on('botMessage', function(bot, message) {
             google(msg, function(err, next, links){
                 if (err) console.error(err);
 
-                bot.message(links[0]);
+                bot.message(links[0].link);
             });
         } else if (helper.check( "felicia insult", tokens )) {
             tokens = _.without(tokens, 'felicia', 'insult');
