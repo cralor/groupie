@@ -8,7 +8,10 @@ const util = require('util');
 const request = require('request');
 const image = require('google-images');
 const helper = require('./helper.js');
-const forecastio = require('forecastio')
+const forecastio = require('forecastio');
+const google = require('google');
+
+google.resultsPerPage = 1;
 
 //const chuck = require('chuck');
 
@@ -154,6 +157,15 @@ bot.on('botMessage', function(bot, message) {
 
             shorten_me.shorten(givenURL, function(err, url) {
                 bot.message(url);
+            });
+        } else if (helper.check( "felicia google", tokens )) {
+            var msg = message.text.toLowerCase().split(" ");
+            msg = _.without(msg, 'felicia', 'google');
+
+            google(msg, function(err, next, links){
+                if (err) console.error(err);
+
+                bot.message(links[0]);
             });
         } else if (helper.check( "felicia insult", tokens )) {
             tokens = _.without(tokens, 'felicia', 'insult');
